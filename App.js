@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 
 import { Todo } from './src/app/Todo';
+import { Fancy } from './src/app/Fancy';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -24,57 +25,6 @@ const instructions = Platform.select({
 });
 
 export const Main = () => (<Todo/>)
-//export default class Main extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     todos: [],
-  //     newTodo: ''
-  //   }
-  // }
-
-  // handleChange(e) {
-  //   const { value } = e.target;
-  //   this.setState({
-  //     newTodo: value
-  //   })
-  // }
-
-  // handlePress() {
-
-  //   this.setState({
-  //     todos: [...this.state.todos, this.state.newTodo]
-  //   })
-  // }
-
-  // render() {
-  //   return (
-  //     <Todo></Todo>
-  //   );
-    // return (
-    //   <View style={styles.container}>
-    //     <TextInput style={{ width: 60 }} 
-    //       onChange={this.handleChange.bind(this)} 
-    //       value={this.state.newTodo} />
-  
-    //     <TouchableHighlight onPress={this.handlePress.bind(this)}>
-    //       <Text>
-    //         tap me
-    //       </Text>
-    //     </TouchableHighlight>
-
-    //     <Text style={styles.welcome}>
-    //       Welcome to React Native 11!
-    //     </Text>
-
-    //     {this.state.todos.map(todo => <Text key={todo}>{todo}</Text>)}
-
-    //   </View>
-
-    // );
-//   }
-// }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
