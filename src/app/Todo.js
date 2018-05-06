@@ -16,6 +16,15 @@ export class Todo extends Component {
     }
   }
 
+  componentDidMount(){
+    fetch('http://10.78.242.100:3000/todos',{
+      headers:  {'Accept': 'application/json'}
+    }).then((data)=> data.json())
+      .then((todos) => {
+        this.setState({todos})
+      })
+  }
+
   handleChange(text) {
     this.setState({
       newTodo: text
@@ -23,8 +32,20 @@ export class Todo extends Component {
   }
 
   handlePress() {
-    const todos = [...this.state.todos, this.state.newTodo];
-    this.setState({ todos, newTodo: '' });
+    fetch('http://10.78.242.100:3000/todos', {
+      method: 'post',
+      body: JSON.stringify({
+        name: this.state.newTodo
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((data) => data.json())
+      .then((todo) => {
+        const todos = [todo, ...this.state.todos];
+        this.setState({ todos, newTodo: '' })
+      });
   }
 
   render() {
@@ -44,7 +65,7 @@ export class Todo extends Component {
         <View style={styles.todos}>
           {this.state.todos.map((todo, i) => (
             <View style={styles.todo} key={i}>
-              <Text style={styles.todoText}>{todo}</Text>
+              <Text style={styles.todoText}>{todo.name}</Text>
             </View>
           ))}
         </View>
