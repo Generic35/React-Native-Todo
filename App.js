@@ -13,11 +13,12 @@ import {
   TextInput,
   TouchableHighlight
 } from 'react-native';
+import { Provider } from 'react-redux';
 
 import { Todo } from './src/app/Todo';
 import { Fancy } from './src/app/Fancy';
 import { Reddit } from './src/app/Reddit';
-
+import { store } from './src/app/store';
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
     'Cmd+D or shake for dev menu',
@@ -25,7 +26,10 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-export const Main = () => (<Todo/>)
+export const Main = () => (
+  <Provider store={store}>
+    <Todo/>
+  </Provider>)
 const styles = StyleSheet.create({
   container: {
     flex: 1,

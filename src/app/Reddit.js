@@ -1,39 +1,33 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { ADD_POST } from './reducers';
 
-export class Reddit extends Component {
-  constructor() {
-    super();
-    this.state = {
-      posts: []
-    }
-  }
-  componentDidMount() {
-    fetch('https://www.reddit.com/.json', {
-      Accept: 'application/json'
-    })
-      .then((res) => res.json().then())
-      .then((data) => { 
-        this.setState({posts: data.data.children})
-    });
-  }
+const _Reddit = (props) => (
+  <View>
+    {props.posts.map((post, i) => (
+      <Text key={i}>{post.name}</Text>
+    ))}
+    <TouchableOpacity onPress={props.addRedditPost}>
+      <Text>
+        Add
+      </Text>
+    </TouchableOpacity>
+  </View>
+);
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>reddit</Text>
-        <View>
-          {this.state.posts.map((post, i) => (
-            <Text key={i}>{post.data.author}</Text>
-          ))}
-        </View>
-      </View>
-    );
-  }
-}
+// const styles = StyleSheet.create({
+//   container: {
+//     margin: 20
+//   }
+// })`
 
-const styles = StyleSheet.create({
-  container: {
-    margin: 20
+const mapStateToProps = (state) => ({
+  posts: state.reddit
+});
+const addActionToProps = (dispatch) => ({
+  addRedditPost(post = {name: 'new post'}){
+    dispatch({ type: ADD_POST, payload: post });
   }
 })
+export const Reddit = connect(mapStateToProps, addActionToProps)(_Reddit);

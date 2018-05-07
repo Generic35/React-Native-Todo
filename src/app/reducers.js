@@ -1,0 +1,25 @@
+import {combineReducers} from 'redux';
+
+export const ADD_POST = 'ADD_POST';
+
+const reddit = (state=[
+  { 
+    name: 'demo'
+  },
+  {
+    name: 'hello'
+  },
+  {
+    name: 'hello2'
+  }
+], action) => {
+  switch (action.type){
+    case ADD_POST: {
+      return [action.payload, ...state]
+    }
+    default:
+      return state;
+  }
+}
+
+export const reducer = combineReducers({reddit})
