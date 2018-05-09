@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import { Main } from './App';
+import { Root } from './src';
 
-AppRegistry.registerComponent('Todo', () => Main);
+AppRegistry.registerComponent('Todo', () => Root);
